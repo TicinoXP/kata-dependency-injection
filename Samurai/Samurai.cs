@@ -12,6 +12,14 @@ namespace Samurai
         }
     }
 
+    public class Gun
+    {
+        public string UseAgainst(string target)
+        {
+            return $"Raise your hands, {target}, you coward!";
+        }
+    }
+
     public class Samurai
     {
         public string Attack(string target)
@@ -20,7 +28,7 @@ namespace Samurai
             return $"I'm a ninja! {attack}";
         }
     }
-    
+
     public class KatanaTest
     {
         [Fact]
@@ -40,8 +48,17 @@ namespace Samurai
 
             var result = sut.UseAgainst("Christian");
 
-
             result.Should().Be("I chop you in 2, Christian!");
+        }
+
+        [Fact]
+        public void should_shoot_people()
+        {
+            var sut = new Gun();
+
+            var result = sut.UseAgainst("Christian");
+
+            result.Should().Be("Raise your hands, Christian, you coward!");
         }
     }
 }
