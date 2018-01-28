@@ -27,36 +27,37 @@ namespace Samurai
 
     public class TwoHands : IWeapon
     {
+        private readonly Gun _gun;
+        private readonly Katana _katana;
+
+        public TwoHands(Gun gun, Katana katana)
+        {
+            _gun = gun;
+            _katana = katana;
+        }
+
         public string UseAgainst(string target)
         {
-            var gun = new Gun();
-            var gunMessage = gun.UseAgainst(target);
-            
-            var katana = new Katana();
-            var katanaMessage = katana.UseAgainst(target);
+            var gunMessage = _gun.UseAgainst(target);
+            var katanaMessage = _katana.UseAgainst(target);
             
             return $"{gunMessage} {katanaMessage}";
         }
     }
 
-    
     public class Samurai
     {
-        public string WeaponToUse { get; set; }
+        private readonly IWeapon _weapon;
+
+        public Samurai(IWeapon weapon)
+        {
+            _weapon = weapon;
+        }
 
         public string Attack(string target)
         {
-            IWeapon weapon;
-            if (WeaponToUse == "katana")
-                weapon = new Katana();
-            else if (WeaponToUse == "gun")
-                weapon = new Gun();
-            else if (WeaponToUse == "katana and gun")
-                weapon = new TwoHands();
-            else
-                throw new Exception();
             
-            var attack = weapon.UseAgainst(target);
+            var attack = _weapon.UseAgainst(target);
             return $"I'm a ninja! {attack}";
         }
     }
@@ -66,8 +67,7 @@ namespace Samurai
         [Fact]
         public void Samurai_can_use_a_gun()
         {
-            var samurai = new Samurai();
-            samurai.WeaponToUse = "gun";
+            var samurai = new Samurai(new Gun());
 
             var result = samurai.Attack("Christian");
 
@@ -77,8 +77,7 @@ namespace Samurai
         [Fact]
         public void Samurai_can_use_a_katana()
         {
-            var samurai = new Samurai();
-            samurai.WeaponToUse = "katana";
+            var samurai = new Samurai(new Katana());
 
             var result = samurai.Attack("Christian");
 
@@ -88,8 +87,7 @@ namespace Samurai
         [Fact]
         public void Samurai_can_fight_with_2_hands()
         {
-            var sut = new Samurai();
-            sut.WeaponToUse = "katana and gun";
+            var sut = new Samurai(new TwoHands(new Gun(), new Katana()));
 
             var result = sut.Attack("Christian");
             
@@ -119,13 +117,11 @@ namespace Samurai
         [Fact]
         public void should_shoot_and_chop()
         {
-            var sut = new TwoHands();
+            var sut = new TwoHands(new Gun(), new Katana());
 
             var result = sut.UseAgainst("Christian");
 
             result.Should().Be("Raise your hands, Christian, you coward! I chop you in 2, Christian!");
-            
         }       
     }
-
 }
