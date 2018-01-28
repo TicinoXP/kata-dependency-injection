@@ -27,24 +27,26 @@ namespace Samurai
 
     public class TwoHands : IWeapon
     {
-        private readonly Gun _gun;
-        private readonly Katana _katana;
+        private Gun _gun;
 
-        public TwoHands(Gun gun, Katana katana)
+        public TwoHands()
         {
-            _gun = gun;
-            _katana = katana;
+            _gun = new Gun();
         }
+
 
         public string UseAgainst(string target)
         {
             var gunMessage = _gun.UseAgainst(target);
-            var katanaMessage = _katana.UseAgainst(target);
+            
+            var katana = new Katana();
+            var katanaMessage = katana.UseAgainst(target);
             
             return $"{gunMessage} {katanaMessage}";
         }
     }
 
+    
     public class Samurai
     {
         private readonly IWeapon _weapon;
@@ -87,7 +89,7 @@ namespace Samurai
         [Fact]
         public void Samurai_can_fight_with_2_hands()
         {
-            var sut = new Samurai(new TwoHands(new Gun(), new Katana()));
+            var sut = new Samurai(new TwoHands());
 
             var result = sut.Attack("Christian");
             
@@ -117,11 +119,13 @@ namespace Samurai
         [Fact]
         public void should_shoot_and_chop()
         {
-            var sut = new TwoHands(new Gun(), new Katana());
+            var sut = new TwoHands();
 
             var result = sut.UseAgainst("Christian");
 
             result.Should().Be("Raise your hands, Christian, you coward! I chop you in 2, Christian!");
+            
         }       
     }
+
 }
