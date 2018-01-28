@@ -1,10 +1,14 @@
-﻿using System;
-using FluentAssertions;
+﻿using FluentAssertions;
 using Xunit;
 
 namespace Samurai
 {
-    public class Katana
+    public interface IWeapon
+    {
+        string UseAgainst(string target);
+    }
+
+    public class Katana : IWeapon
     {
         public string UseAgainst(string target)
         {
@@ -12,7 +16,7 @@ namespace Samurai
         }
     }
 
-    public class Gun
+    public class Gun : IWeapon
     {
         public string UseAgainst(string target)
         {
@@ -22,9 +26,17 @@ namespace Samurai
 
     public class Samurai
     {
+        public string WeaponToUse { get; set; }
+
         public string Attack(string target)
         {
-            var attack = new Katana().UseAgainst(target);
+            IWeapon weapon;
+            if (WeaponToUse == "katana")
+                weapon = new Katana();
+            else
+                weapon = new Gun();
+            
+            var attack = weapon.UseAgainst(target);
             return $"I'm a ninja! {attack}";
         }
     }
@@ -32,15 +44,27 @@ namespace Samurai
     public class KatanaTest
     {
         [Fact]
+        public void Samurai_can_use_a_gun()
+        {
+            var samurai = new Samurai();
+            samurai.WeaponToUse = "gun";
+
+            var result = samurai.Attack("Christian");
+
+            result.Should().Be("I'm a ninja! Raise your hands, Christian, you coward!");
+        }
+
+        [Fact]
         public void Samurai_can_use_a_katana()
         {
             var samurai = new Samurai();
+            samurai.WeaponToUse = "katana";
 
             var result = samurai.Attack("Christian");
 
             result.Should().Be("I'm a ninja! I chop you in 2, Christian!");
         }
-        
+
         [Fact]
         public void should_chop_people_in_two()
         {
