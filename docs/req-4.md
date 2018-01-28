@@ -22,3 +22,5 @@ A seconda che il valore di `WeaponToUse` sia `gun` o `katana`, il Samurai dovreb
     samurai.Attack("Christian");
     
     => "I'm a Samurai... I chop you in 2, Christian!"
+    
+[Indice](../README.md)

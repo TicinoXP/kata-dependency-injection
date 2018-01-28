@@ -11,4 +11,4 @@ Vorrei che non fosse usata la Dependency Injection: il Samurai dovrebbe crearsi 
     samurai.Attack("Christian")
     => "I'm a Samurai... I chop you in 2, Christian!"
 
-[Requisito 3](req-3.md)
+[Indice](../README.md) | [Requisito 3](req-3.md)

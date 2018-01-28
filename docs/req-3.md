@@ -17,4 +17,4 @@ Per adesso non mi interessa che la pistola venga usata da nessuno
     gun.Attack("Christian")
     => "Raise your hands, Christian, you coward!"
 
-[Requisito 4](req-4.md)
+[Indice](../README.md) | [Requisito 4](req-4.md)
