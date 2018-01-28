@@ -14,4 +14,5 @@ Si usa con il metodo `UseAgainst(string target)`, che restituisce una stringa co
 
 Non ci sono requisiti particolari per i casi di stringa vuota e di `null`.
 
+
 [Indice](../README.md) :: [Requisito 2](req-2.md)

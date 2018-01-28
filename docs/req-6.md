@@ -31,4 +31,5 @@ Per rifattorizzare `TwoHands` si può procedere così:
 1. Selezionare le new che istanziano le armi e usare Introduce Field, specificando che si desidera che il valore vanga iniettato dal costruttore.
 2. Usare Inline per eliminare le eventuali variabili superflue.
 
+
 [Indice](../README.md)
