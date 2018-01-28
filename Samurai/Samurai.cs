@@ -1,4 +1,5 @@
-﻿using FluentAssertions;
+﻿using System;
+using FluentAssertions;
 using Xunit;
 
 namespace Samurai
@@ -24,6 +25,21 @@ namespace Samurai
         }
     }
 
+    public class TwoHands : IWeapon
+    {
+        public string UseAgainst(string target)
+        {
+            var gun = new Gun();
+            var gunMessage = gun.UseAgainst(target);
+            
+            var katana = new Katana();
+            var katanaMessage = katana.UseAgainst(target);
+            
+            return $"{gunMessage} {katanaMessage}";
+        }
+    }
+
+    
     public class Samurai
     {
         public string WeaponToUse { get; set; }
@@ -33,8 +49,12 @@ namespace Samurai
             IWeapon weapon;
             if (WeaponToUse == "katana")
                 weapon = new Katana();
-            else
+            else if (WeaponToUse == "gun")
                 weapon = new Gun();
+            else if (WeaponToUse == "katana and gun")
+                weapon = new TwoHands();
+            else
+                throw new Exception();
             
             var attack = weapon.UseAgainst(target);
             return $"I'm a ninja! {attack}";
@@ -66,6 +86,17 @@ namespace Samurai
         }
 
         [Fact]
+        public void Samurai_can_fight_with_2_hands()
+        {
+            var sut = new Samurai();
+            sut.WeaponToUse = "katana and gun";
+
+            var result = sut.Attack("Christian");
+            
+            result.Should().Be("I'm a ninja! Raise your hands, Christian, you coward! I chop you in 2, Christian!");
+        }
+        
+        [Fact]
         public void should_chop_people_in_two()
         {
             var sut = new Katana();
@@ -84,5 +115,17 @@ namespace Samurai
 
             result.Should().Be("Raise your hands, Christian, you coward!");
         }
+        
+        [Fact]
+        public void should_shoot_and_chop()
+        {
+            var sut = new TwoHands();
+
+            var result = sut.UseAgainst("Christian");
+
+            result.Should().Be("Raise your hands, Christian, you coward! I chop you in 2, Christian!");
+            
+        }       
     }
+
 }
