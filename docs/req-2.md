@@ -9,6 +9,6 @@ Vorrei che non fosse usata la Dependency Injection: il Samurai dovrebbe crearsi 
 ## Esempi
 
     samurai.Attack("Christian")
-    => "I'm a Samurai and I chop you in 2, Christian!"
+    => "I'm a Samurai... I chop you in 2, Christian!"
 
 [Requisito 3](req-3.md)
