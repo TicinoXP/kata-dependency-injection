@@ -26,17 +26,16 @@ namespace Samurai
 
     public class Samurai
     {
-        public string WeaponToUse { get; set; }
+        private readonly IWeapon _weapon;
+
+        public Samurai(IWeapon weapon)
+        {
+            _weapon = weapon;
+        }
 
         public string Attack(string target)
         {
-            IWeapon weapon;
-            if (WeaponToUse == "katana")
-                weapon = new Katana();
-            else
-                weapon = new Gun();
-            
-            var attack = weapon.UseAgainst(target);
+            var attack = _weapon.UseAgainst(target);
             return $"I'm a ninja! {attack}";
         }
     }
@@ -46,8 +45,7 @@ namespace Samurai
         [Fact]
         public void Samurai_can_use_a_gun()
         {
-            var samurai = new Samurai();
-            samurai.WeaponToUse = "gun";
+            var samurai = new Samurai(new Gun());
 
             var result = samurai.Attack("Christian");
 
@@ -57,8 +55,7 @@ namespace Samurai
         [Fact]
         public void Samurai_can_use_a_katana()
         {
-            var samurai = new Samurai();
-            samurai.WeaponToUse = "katana";
+            var samurai = new Samurai(new Katana());
 
             var result = samurai.Attack("Christian");
 
