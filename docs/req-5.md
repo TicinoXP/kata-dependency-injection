@@ -20,4 +20,4 @@ Di nuovo, vorrei che nessun valore venisse iniettati attraverso i costruttori.
     => "I'm a Samurai... Raise your hands, Christian, you coward! I chop you in 2, Christian!"
 
     
-[Indice](../README.md) | [Requisito 6](req-6.md)
+[Indice](../README.md) :: [Requisito 6](req-6.md)
