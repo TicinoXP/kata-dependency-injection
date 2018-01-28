@@ -12,8 +12,27 @@ namespace Samurai
         }
     }
 
+    public class Samurai
+    {
+        public string Attack(string target)
+        {
+            var attack = new Katana().UseAgainst(target);
+            return $"I'm a ninja! {attack}";
+        }
+    }
+    
     public class KatanaTest
     {
+        [Fact]
+        public void Samurai_can_use_a_katana()
+        {
+            var samurai = new Samurai();
+
+            var result = samurai.Attack("Christian");
+
+            result.Should().Be("I'm a ninja! I chop you in 2, Christian!");
+        }
+        
         [Fact]
         public void should_chop_people_in_two()
         {
