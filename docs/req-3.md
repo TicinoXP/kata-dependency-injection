@@ -1,6 +1,6 @@
 # Requisito 3
 
-Un Samurai può minacciare il suo obiettivo con una pistola.
+Una pistola serve per minacciare un obiettivo con una pistola.
 
 La pistola e la Katana rispondono entrambi allo stesso metodo `Attack(string target)` ma, mentre la Katana restituisce il messaggio:
 
