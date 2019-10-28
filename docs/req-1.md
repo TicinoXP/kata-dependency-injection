@@ -1,8 +1,8 @@
 # Requisito 1
 
-Una Katana Ã¨ un'arma per tagliare in due una persona.
+Una Katana è un'arma per tagliare in due una persona.
 
-Si usa con il metodo `UseAgainst(string target)`, che restituisce una stringa contenente un messaggio.
+Si usa con il metodo `UseAgainst(string target)`, il quale restituisce una stringa contenente un messaggio.
 
 ## Esempi
 

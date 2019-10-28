@@ -4,7 +4,7 @@ Adesso vorrei poter scegliere se armare il Samurai con una Katana o con una pist
 
 Siccome ancora non voglio utilizzare la Dependency Injection, vorrei che il Samurai continuasse a conservare un costruttore di default, senza parametri.
 
-Vorrei piuttosto poter scegliere l'arma da usare mediante una propriet√† pubblica chiamata `WeaponToUse`.<br/>
+Vorrei poter scegliere l'arma da usare mediante una propriet‡ pubblica chiamata `WeaponToUse`.<br/>
 A seconda che il valore di `WeaponToUse` sia `gun` o `katana`, il Samurai dovrebbe crearsi l'istanza corretta di arma.
 
 

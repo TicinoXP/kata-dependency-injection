@@ -1,12 +1,12 @@
 # Requisito 5
 
-A questo punto dovrebbe essere facile aggiungere armi a piacimento. Creiamo un'ultima arma per il Samurai, applicando il Composite Pattern: dotiamolo della capacit√† di lottare a due mani, usando sia la Katana che la pistola.
+A questo punto dovrebbe essere facile aggiungere armi a piacimento. Creiamo un'ultima arma per il Samurai, applicando il Composite Pattern: dotiamolo della capacit‡ di lottare a due mani, usando sia la Katana che la pistola.
 
 L'arma `TwoHands` risponde alla stessa interfaccia di `Katana` e di `Gun`, e restituisce il messaggio:
 
     "Raise your hands, <target>, you coward! I chop you in 2, <target>!"
 
-Il valore di `WeaponToUse` per chiedere a un Samurai di lottare a due mani √® `katana and gun`.<br />
+Il valore di `WeaponToUse` per chiedere a un Samurai di lottare a due mani Ë `katana and gun`.<br />
 Non mi interessa che venga gestito il valore con le armi invertite, `gun and katana`.
 
 Di nuovo, vorrei che nessun valore venisse iniettati attraverso i costruttori.
